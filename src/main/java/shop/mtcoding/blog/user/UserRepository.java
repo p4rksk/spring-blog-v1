@@ -42,9 +42,13 @@ public class UserRepository {
         query.setParameter(1, requestDTO.getUsername());
         query.setParameter(2, requestDTO.getPassword());
 
+        try{
+            User user = (User) query.getSingleResult(); //single Result는 한건
+            return user;
+        }catch (Exception e){
+            return null;
+        }
 
-        User user = (User) query.getSingleResult(); //single Result는 한건
-        return user;
     }
 }
 

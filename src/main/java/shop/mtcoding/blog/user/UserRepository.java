@@ -17,7 +17,7 @@ public class UserRepository {
     }
 
 
-    @Transactional
+    @Transactional //다른 메서드랑 같이 사용 할 일이 없다.
     public void save(UserRequest.JoinDto requestDTO){
         System.out.println("UserRepository에 save 메서드 호출됨");
         Query query = em.createNativeQuery("insert into user_tb(username, password, email) values(?, ?, ?)");
@@ -41,6 +41,19 @@ public class UserRepository {
         Query query = em.createNativeQuery("select * from user_tb where username=? and password=?", User.class); //
         query.setParameter(1, requestDTO.getUsername());
         query.setParameter(2, requestDTO.getPassword());
+
+        try{
+            User user = (User) query.getSingleResult(); //single Result는 한건
+            return user;
+        }catch (Exception e){
+            return null;
+        }
+
+    }
+
+    public User findByUsernameAndPassword(String username) {
+        Query query = em.createNativeQuery("select * from user_tb where username=?", User.class); //
+        query.setParameter(1, username);
 
         try{
             User user = (User) query.getSingleResult(); //single Result는 한건

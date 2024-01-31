@@ -57,10 +57,23 @@ public class UserController {
             return "error/400";
         }
 
-        //2. Model에게 위임하기.
-        userRepository.save2(requestDTO);
 
-        //DB INSERT DB쪽으로 ㅇ
+
+        //2. 동일 username체크 (유효성 검사랑 다르다. 비즈니스 코드라 명칭한다.) (나중에 하나의 트랜잭션으로 묶는 것이 좋다.)
+        User user = userRepository.findByUsernameAndPassword(requestDTO.getUsername());
+        if (user==null){
+            userRepository.save(requestDTO);
+        }else{
+            return "error/400";
+        }
+
+
+        //3. Model에게 위임하기.
+
+            userRepository.save2(requestDTO);
+
+
+
 
         return "redirect:/loginForm";
     }

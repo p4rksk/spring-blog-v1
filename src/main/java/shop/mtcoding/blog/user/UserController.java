@@ -95,6 +95,7 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout() {
+        session.invalidate();//서랍안에 있는 내용을 다삭제
         return "redirect:/";
     }
 }

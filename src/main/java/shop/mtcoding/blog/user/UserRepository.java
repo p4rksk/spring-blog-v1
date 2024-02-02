@@ -1,12 +1,11 @@
 package shop.mtcoding.blog.user;
 
-import net.bytebuddy.asm.Advice;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 @Repository //이 어노테이션을 붙이면 em을 들고있는 UserRepository가 ioc에 뜬다. (DAO)
 public class UserRepository {

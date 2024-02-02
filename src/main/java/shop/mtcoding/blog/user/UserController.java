@@ -1,12 +1,13 @@
 package shop.mtcoding.blog.user;
 
+import jakarta.servlet.http.HttpSession;
 import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpSession;
+
 
 
 /**
@@ -24,6 +25,8 @@ import javax.servlet.http.HttpSession;
 public class UserController {
 
     private final UserRepository userRepository;
+
+    //IOC 컨테이너에 센셔에 접근 할 수 있는 변수가 들어가 있음. DI하면 됨
     private final HttpSession session;
 
 
